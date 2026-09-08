@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Bloom for You</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header><a href="./">bloom for you<span> A LITTLE FLOWER. A LOT OF PRESSURE.</span></a><button id="pause" disabled>Pause · P</button></header>
+  <main>
+    <div class="heading"><div><p class="eyebrow">A GIFT WORTH GROWING</p><h1>Love takes a little care.</h1></div><div class="progress"><span id="stage">01 / 04 · Sprout</span><div><i id="growth"></i></div><small id="clock">90 seconds to make her day</small></div></div>
+    <section class="game" aria-label="Flower growing game">
+      <canvas id="scene" width="1000" height="650" tabindex="0" aria-label="Game scene. Use tool buttons or keys 1 through 5. B toggles blinds. Click the plant to prune and bugs to swat."></canvas>
+      <div id="toast" role="status">A little attention goes a long way.</div>
+      <div id="mini" hidden></div>
+      <div id="overlay" class="overlay"><div class="card"><p class="eyebrow">FOR SOMEONE SPECIAL</p><h2>Can you make<br>love bloom?</h2><p>Grow a flower for your girlfriend in 90 hectic seconds. Keep its needs balanced while life gets in the way.</p><div class="instructions"><p><b>1 · Water</b> Hold / release Space to balance the tilt.</p><p><b>2 · Food</b> Tap Space on the center green dot.</p><p><b>3 · Prune</b> Click the plant to remove one layer.</p><p><b>4 · Swat</b> Click flies before they eat the flower.</p><p><b>5 · Treat</b> Drag a bone from the bag to your dog.</p><p><b>B · Blinds</b> Open for sunlight. Closed keeps new bugs out.</p></div><p class="fine">Tools keep working during daydreams. Mash Space to snap out!<br>Esc puts a tool down · P pauses</p><button id="start" class="primary" disabled>Loading your artwork…</button></div></div>
+    </section>
+    <section class="care" aria-label="Plant status"><div><img src="png/water_icon.png" alt=""><label>Water <output id="waterValue">55%</output></label><meter id="water" min="0" max="100" low="20" high="85" optimum="55" value="55"></meter></div><div><img src="png/sun_icon.png" alt=""><label>Sunlight <output id="sunValue">65%</output></label><meter id="sun" min="0" max="100" low="20" high="100" optimum="65" value="65"></meter></div><div><img src="png/food_icon.png" alt=""><label>Food <output id="foodValue">55%</output></label><meter id="food" min="0" max="100" low="20" high="85" optimum="55" value="55"></meter></div></section>
+    <nav class="tools" aria-label="Tools"><button data-tool="water"><img src="png/sitting_wateringcan.png" alt=""><span><b>Water</b><small>1 · Balance</small></span></button><button data-tool="food"><img src="png/sitting_plantfood.png" alt=""><span><b>Plant food</b><small>2 · Time it</small></span></button><button data-tool="prune"><img src="png/sitting_shears.png" alt=""><span><b>Prune</b><small>3 · Snip leaves</small></span></button><button data-tool="swat"><img src="png/sitting_flyswatter.png" alt=""><span><b>Fly swatter</b><small>4 · Aim & click</small></span></button><button data-tool="treat"><img src="png/dog_bonebag.png" alt=""><span><b>Dog treats</b><small>5 · Drag a bone</small></span></button><button id="blinds">Blinds open<small>B · Let the sun in</small></button></nav>
+    <footer><span id="condition">Leaves: clear · Flower: healthy</span><span>Your original art. One very needy plant.</span></footer>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
