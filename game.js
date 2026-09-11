@@ -84,17 +84,13 @@ function waterFlowRate(tilt){
   return 2+8*balance;
 }
 
-// Trim alpha margins into an in-memory canvas; the artist's source files stay intact.
+// Preserve the complete PNG canvas, including transparent margins. The layout was
+// designed with these coordinates, and must match under file:// and HTTP alike.
 async function loadArt(name) {
-  const img = new Image(); img.src = `${(['slash','leaf','flower','dude_dog'].includes(name)||plantEffectNames.includes(name)||endingPoseNames.includes(name))?'png2':'png'}/${name}.png`; await img.decode();
-  const c = document.createElement('canvas'); c.width=img.width; c.height=img.height;
-  const g = c.getContext('2d',{willReadFrequently:true}); g.drawImage(img,0,0);
-  try {
-    const d=g.getImageData(0,0,c.width,c.height).data;
-    let left=c.width,top=c.height,right=0,bottom=0;
-    for(let y=0;y<c.height;y++)for(let x=0;x<c.width;x++)if(d[(y*c.width+x)*4+3]>20){left=Math.min(left,x);right=Math.max(right,x);top=Math.min(top,y);bottom=Math.max(bottom,y);}
-    assets[name]={img:c,x:left,y:top,w:right-left+1,h:bottom-top+1,pixels:d};
-  } catch { assets[name]={img,x:0,y:0,w:img.width,h:img.height}; }
+  const img = new Image();
+  img.src = `${(['slash','leaf','flower','dude_dog'].includes(name)||plantEffectNames.includes(name)||endingPoseNames.includes(name))?'png2':'png'}/${name}.png`;
+  await img.decode();
+  assets[name]={img,x:0,y:0,w:img.width,h:img.height};
 }
 let poseTransform={x:0,y:0,sx:1,sy:1};
 function applyPoseTransform(){

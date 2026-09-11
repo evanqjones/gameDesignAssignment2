@@ -320,3 +320,15 @@ test('moving dog screenshot appears only on dog-loss screens and clears on retry
  g.run('start("debug");debugAction("loss-dog")');assert.equal(g.run('$("dog-ending").hidden'),false);
  g.run('debugAction("win")');assert.equal(g.run('$("dog-ending").hidden'),true);
 });
+
+test('art loading preserves full PNG coordinates without security-dependent canvas cropping',async()=>{
+ const g=game();
+ g.run('Image=class{constructor(){this.width=1024;this.height=768}async decode(){}};document.createElement=()=>{throw new Error("Canvas pixel access must not affect layout")};');
+ for(const name of ['dude1','hold_wateringcan','plant1','plant1chop_top','plant1chop_bottom','dude_dog']){
+  await g.run(`loadArt("${name}")`);
+  assert.equal(g.run(`assets["${name}"].x`),0);assert.equal(g.run(`assets["${name}"].y`),0);
+  assert.equal(g.run(`assets["${name}"].w`),1024);assert.equal(g.run(`assets["${name}"].h`),768);
+ }
+ assert.equal(g.run('assets.dude1.img.src'),'png/dude1.png');
+ assert.equal(g.run('assets.dude_dog.img.src'),'png2/dude_dog.png');
+});

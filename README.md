@@ -1,10 +1,10 @@
 # Blooming Chaos
 
-A fast-paced, 90-second flower-care game in HTML, CSS, and vanilla JavaScript. All scene artwork uses your original PNGs. Transparent margins are cropped in memory; source artwork is unchanged.
+A fast-paced, 90-second flower-care game in HTML, CSS, and vanilla JavaScript. All scene artwork uses your original PNGs. The complete PNG canvas, including transparent margins, is preserved so local files and GitHub Pages use identical artwork coordinates. Source artwork is unchanged.
 
 ## Run
 
-Run `python -m http.server 8080 --bind 127.0.0.1` in this folder and visit **http://localhost:8080**. No dependencies or build step. Use a server for correct automatic artwork cropping. Fonts have local fallbacks when offline.
+Run `python -m http.server 8080 --bind 127.0.0.1` in this folder and visit **http://localhost:8080**. No dependencies or build step. You can also open index.html directly; both use the same artwork dimensions. Fonts have local fallbacks when offline.
 
 ## Controls
 
